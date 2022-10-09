@@ -1,6 +1,6 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
-import com.perpustakaan.perpustakaansalwa.entity.Pengarang;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengarangDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PengarangServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +20,13 @@ public class PengarangController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Pengarang param){
+    public ResponseEntity<?>saveData(@RequestBody PengarangDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Pengarang param){
-        Pengarang data = service.update(param, id);
+                                       @RequestBody PengarangDTO param){
+        PengarangDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

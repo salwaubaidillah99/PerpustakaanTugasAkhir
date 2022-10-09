@@ -1,6 +1,8 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
 import com.perpustakaan.perpustakaansalwa.entity.Pengembalian;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengembalianDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.PengembalianMapping;
 import com.perpustakaan.perpustakaansalwa.repository.PengembalianRepository;
 import com.perpustakaan.perpustakaansalwa.service.PengembalianService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +16,28 @@ public class PengembalianServiceImpl implements PengembalianService {
     private PengembalianRepository repository;
 
     @Override
-    public Pengembalian save(Pengembalian param)
-    {
-        return repository.save(param);
+    public PengembalianDTO save(PengembalianDTO param){
+        Pengembalian data = repository.save(PengembalianMapping.instance.toEntity(param));
+        return PengembalianMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Pengembalian> findAllData()
+    public List<PengembalianDTO> findAllData()
     {
-        return  repository.findAll();
+        return  PengembalianMapping.instance.toListDto(repository.findAll());
 
     }
     @Override
-    public Pengembalian update(Pengembalian param, Long id) {
+    public PengembalianDTO update(PengembalianDTO param, Long id) {
         Pengembalian data = repository.findById(id).orElse(null);
 
         if (data != null){
             data.setTglPengembalian(param.getTglPengembalian()== null ? data.getTglPengembalian() : param.getTglPengembalian());
             data.setDenda(param.getDenda()== null ? data.getDenda() : param.getDenda());
 
-            return  repository.save(data);
+            return  PengembalianMapping.instance.toDto(data);
         }
-        return data;
+        return PengembalianMapping.instance.toDto(data);
 
     }
     @Override
@@ -51,8 +53,7 @@ public class PengembalianServiceImpl implements PengembalianService {
     }
 
     @Override
-    public Pengembalian findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public PengembalianDTO findById(Long id) {
+        return PengembalianMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
-

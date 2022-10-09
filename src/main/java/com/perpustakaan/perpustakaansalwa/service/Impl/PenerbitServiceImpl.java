@@ -1,6 +1,8 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
 import com.perpustakaan.perpustakaansalwa.entity.Penerbit;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PenerbitDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.PenerbitMapping;
 import com.perpustakaan.perpustakaansalwa.repository.PenerbitRepository;
 import com.perpustakaan.perpustakaansalwa.service.PenerbitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,19 @@ public class PenerbitServiceImpl implements PenerbitService {
     private PenerbitRepository repository;
 
     @Override
-    public Penerbit save(Penerbit param)
-    {
-        return repository.save(param);
+    public PenerbitDTO save(PenerbitDTO param){
+        Penerbit data = repository.save(PenerbitMapping.instance.toEntity(param));
+        return PenerbitMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Penerbit> findAllData()
+    public List<PenerbitDTO> findAllData()
     {
-        return  repository.findAll();
+        return  PenerbitMapping.instance.toListDto(repository.findAll());
 
     }
     @Override
-    public Penerbit update(Penerbit param, Long id) {
+    public PenerbitDTO update(PenerbitDTO param, Long id) {
         Penerbit data = repository.findById(id).orElse(null);
 
         if (data != null){
@@ -35,9 +37,9 @@ public class PenerbitServiceImpl implements PenerbitService {
             data.setAlamat(param.getAlamat()== null ? data.getAlamat() : param.getAlamat());
             data.setNoTelp(param.getNoTelp()== null ? data.getNoTelp() : param.getNoTelp());
 
-            return  repository.save(data);
+            return  PenerbitMapping.instance.toDto(data);
         }
-        return data;
+        return PenerbitMapping.instance.toDto(data);
 
     }
     @Override
@@ -53,8 +55,7 @@ public class PenerbitServiceImpl implements PenerbitService {
     }
 
     @Override
-    public Penerbit findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public PenerbitDTO findById(Long id) {
+        return PenerbitMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
-

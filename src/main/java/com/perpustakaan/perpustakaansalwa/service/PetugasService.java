@@ -1,16 +1,20 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
 import com.perpustakaan.perpustakaansalwa.entity.Petugas;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengembalianDTO;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PetugasDTO;
+
 import java.util.List;
 
 public interface PetugasService {
-    Petugas save(Petugas param);
+    PetugasDTO save(PetugasDTO param);
 
-    List<Petugas> findAllData();
+    List<PetugasDTO> findAllData();
 
-    Petugas update(Petugas param, Long id);
+    PetugasDTO update(PetugasDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Petugas findById(Long id);
+    PetugasDTO findById(Long id);
 }
+

@@ -1,6 +1,8 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
 import com.perpustakaan.perpustakaansalwa.entity.Pengarang;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengarangDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.PengarangMapping;
 import com.perpustakaan.perpustakaansalwa.repository.PengarangRepository;
 import com.perpustakaan.perpustakaansalwa.service.PengarangService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,19 @@ public class PengarangServiceImpl implements PengarangService {
     private PengarangRepository repository;
 
     @Override
-    public Pengarang save(Pengarang param)
-    {
-        return repository.save(param);
+    public PengarangDTO save(PengarangDTO param){
+        Pengarang data = repository.save(PengarangMapping.instance.toEntity(param));
+        return PengarangMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Pengarang> findAllData()
+    public List<PengarangDTO> findAllData()
     {
-        return  repository.findAll();
+        return  PengarangMapping.instance.toListDto(repository.findAll());
 
     }
     @Override
-    public Pengarang update(Pengarang param, Long id) {
+    public PengarangDTO update(PengarangDTO param, Long id) {
         Pengarang data = repository.findById(id).orElse(null);
 
         if (data != null){
@@ -35,9 +37,9 @@ public class PengarangServiceImpl implements PengarangService {
             data.setAlamat(param.getAlamat()== null ? data.getAlamat() : param.getAlamat());
             data.setNoTelp(param.getNoTelp()== null ? data.getNoTelp() : param.getNoTelp());
 
-            return  repository.save(data);
+            return  PengarangMapping.instance.toDto(data);
         }
-        return data;
+        return PengarangMapping.instance.toDto(data);
 
     }
     @Override
@@ -53,8 +55,7 @@ public class PengarangServiceImpl implements PengarangService {
     }
 
     @Override
-    public Pengarang findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public PengarangDTO findById(Long id) {
+        return PengarangMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
-

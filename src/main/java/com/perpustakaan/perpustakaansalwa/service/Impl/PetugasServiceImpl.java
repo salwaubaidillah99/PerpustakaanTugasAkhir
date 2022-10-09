@@ -1,7 +1,14 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
+import com.perpustakaan.perpustakaansalwa.entity.Pengarang;
 import com.perpustakaan.perpustakaansalwa.entity.Petugas;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengarangDTO;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PetugasDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.PengarangMapping;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.PetugasMapping;
+import com.perpustakaan.perpustakaansalwa.repository.PengarangRepository;
 import com.perpustakaan.perpustakaansalwa.repository.PetugasRepository;
+import com.perpustakaan.perpustakaansalwa.service.PengarangService;
 import com.perpustakaan.perpustakaansalwa.service.PetugasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,38 +22,37 @@ public class PetugasServiceImpl implements PetugasService {
     private PetugasRepository repository;
 
     @Override
-    public Petugas save(Petugas param)
-    {
-        return repository.save(param);
+    public PetugasDTO save(PetugasDTO param) {
+        Petugas data = repository.save(PetugasMapping.instance.toEntity(param));
+        return PetugasMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Petugas> findAllData()
-    {
-        return  repository.findAll();
+    public List<PetugasDTO> findAllData() {
+        return PetugasMapping.instance.toListDto(repository.findAll());
 
     }
+
     @Override
-    public Petugas update(Petugas param, Long id) {
+    public PetugasDTO update(PetugasDTO param, Long id) {
         Petugas data = repository.findById(id).orElse(null);
 
-        if (data != null){
-            data.setNamaPetugas(param.getNamaPetugas()== null ? data.getNamaPetugas() : param.getNamaPetugas());
-            data.setAlamat(param.getAlamat()== null ? data.getAlamat() : param.getAlamat());
-            data.setNoTelp(param.getNoTelp()== null ? data.getNoTelp() : param.getNoTelp());
+        if (data != null) {
+            data.setNamaPetugas(param.getNamaPetugas() == null ? data.getNamaPetugas() : param.getNamaPetugas());
+            data.setAlamat(param.getAlamat() == null ? data.getAlamat() : param.getAlamat());
+            data.setNoTelp(param.getNoTelp() == null ? data.getNoTelp() : param.getNoTelp());
 
-
-
-            return  repository.save(data);
+            return PetugasMapping.instance.toDto(data);
         }
-        return data;
+        return PetugasMapping.instance.toDto(data);
 
     }
+
     @Override
     public Boolean delete(Long id) {
         Petugas data = repository.findById(id).orElse(null);
 
-        if (data != null){
+        if (data != null) {
             repository.delete(data);
             return true;
         }
@@ -55,8 +61,7 @@ public class PetugasServiceImpl implements PetugasService {
     }
 
     @Override
-    public Petugas findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public PetugasDTO findById(Long id) {
+        return PetugasMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
-

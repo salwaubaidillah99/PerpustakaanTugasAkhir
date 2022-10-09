@@ -1,16 +1,18 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
 import com.perpustakaan.perpustakaansalwa.entity.Penerbit;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PenerbitDTO;
+
 import java.util.List;
 
 public interface PenerbitService {
-    Penerbit save(Penerbit param);
+    PenerbitDTO save(PenerbitDTO param);
 
-    List<Penerbit> findAllData();
+    List<PenerbitDTO> findAllData();
 
-    Penerbit update(Penerbit param, Long id);
+    PenerbitDTO update(PenerbitDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Penerbit findById(Long id);
+    PenerbitDTO findById(Long id);
 }

@@ -1,16 +1,16 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
-import com.perpustakaan.perpustakaansalwa.entity.Pengembalian;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengembalianDTO;
 import java.util.List;
 
 public interface PengembalianService {
-    Pengembalian save(Pengembalian param);
+    PengembalianDTO save(PengembalianDTO param);
 
-    List<Pengembalian> findAllData();
+    List<PengembalianDTO> findAllData();
 
-    Pengembalian update(Pengembalian param, Long id);
+    PengembalianDTO update(PengembalianDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Pengembalian findById(Long id);
+    PengembalianDTO findById(Long id);
 }

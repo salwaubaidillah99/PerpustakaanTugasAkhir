@@ -1,12 +1,8 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
-import com.perpustakaan.perpustakaansalwa.entity.Anggota;
 import com.perpustakaan.perpustakaansalwa.entity.Buku;
-import com.perpustakaan.perpustakaansalwa.entity.dto.AnggotaDTO;
 import com.perpustakaan.perpustakaansalwa.entity.dto.BukuDTO;
-import com.perpustakaan.perpustakaansalwa.entity.mapping.AnggotaMapping;
 import com.perpustakaan.perpustakaansalwa.entity.mapping.BukuMapping;
-import com.perpustakaan.perpustakaansalwa.repository.AnggotaRepository;
 import com.perpustakaan.perpustakaansalwa.repository.BukuRepository;
 import com.perpustakaan.perpustakaansalwa.service.BukuService;
 import org.springframework.beans.factory.annotation.Autowired;

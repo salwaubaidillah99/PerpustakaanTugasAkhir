@@ -1,16 +1,18 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
 import com.perpustakaan.perpustakaansalwa.entity.Pengarang;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengarangDTO;
+
 import java.util.List;
 
 public interface PengarangService {
-    Pengarang save(Pengarang param);
+    PengarangDTO save(PengarangDTO param);
 
-    List<Pengarang> findAllData();
+    List<PengarangDTO> findAllData();
 
-    Pengarang update(Pengarang param, Long id);
+    PengarangDTO update(PengarangDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Pengarang findById(Long id);
+    PengarangDTO findById(Long id);
 }

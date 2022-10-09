@@ -1,6 +1,6 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
-import com.perpustakaan.perpustakaansalwa.entity.Penerbit;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PenerbitDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PenerbitServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +20,13 @@ public class PenerbitController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Penerbit param){
+    public ResponseEntity<?>saveData(@RequestBody PenerbitDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Penerbit param){
-        Penerbit data = service.update(param, id);
+                                       @RequestBody PenerbitDTO param){
+        PenerbitDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

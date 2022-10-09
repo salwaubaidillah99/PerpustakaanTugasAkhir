@@ -1,16 +1,18 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
 import com.perpustakaan.perpustakaansalwa.entity.Peminjaman;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PeminjamanDTO;
+
 import java.util.List;
 
 public interface PeminjamanService {
-    Peminjaman save(Peminjaman param);
+    PeminjamanDTO save(PeminjamanDTO param);
 
-    List<Peminjaman> findAllData();
+    List<PeminjamanDTO> findAllData();
 
-    Peminjaman update(Peminjaman param, Long id);
+    PeminjamanDTO update(PeminjamanDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Peminjaman findById(Long id);
+    PeminjamanDTO findById(Long id);
 }

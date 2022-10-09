@@ -1,6 +1,7 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
 import com.perpustakaan.perpustakaansalwa.entity.Petugas;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PetugasDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PetugasServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,13 @@ public class PetugasController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Petugas param){
+    public ResponseEntity<?>saveData(@RequestBody PetugasDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Petugas param){
-        Petugas data = service.update(param, id);
+                                       @RequestBody PetugasDTO param){
+        PetugasDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

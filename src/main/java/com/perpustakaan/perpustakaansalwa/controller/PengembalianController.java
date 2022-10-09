@@ -1,6 +1,7 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
 import com.perpustakaan.perpustakaansalwa.entity.Pengembalian;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PengembalianDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PengembalianServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,13 @@ public class PengembalianController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Pengembalian param){
+    public ResponseEntity<?>saveData(@RequestBody PengembalianDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Pengembalian param){
-        Pengembalian data = service.update(param, id);
+                                       @RequestBody PengembalianDTO param){
+        PengembalianDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

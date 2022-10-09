@@ -2,6 +2,7 @@ package com.perpustakaan.perpustakaansalwa.controller;
 
 import com.perpustakaan.perpustakaansalwa.entity.Peminjaman;
 import com.perpustakaan.perpustakaansalwa.entity.Petugas;
+import com.perpustakaan.perpustakaansalwa.entity.dto.PeminjamanDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PeminjamanServiceImpl;
 import com.perpustakaan.perpustakaansalwa.service.Impl.PetugasServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class PeminjamanController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Peminjaman param){
+    public ResponseEntity<?>saveData(@RequestBody PeminjamanDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Peminjaman param){
-        Peminjaman data = service.update(param, id);
+                                       @RequestBody PeminjamanDTO param){
+        PeminjamanDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
 import com.perpustakaan.perpustakaansalwa.entity.Buku;
+import com.perpustakaan.perpustakaansalwa.entity.dto.BukuDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.BukuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,13 @@ public class BukuController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Buku param){
+    public ResponseEntity<?>saveData(@RequestBody BukuDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Buku param){
-        Buku data = service.update(param, id);
+                                       @RequestBody BukuDTO param){
+        BukuDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

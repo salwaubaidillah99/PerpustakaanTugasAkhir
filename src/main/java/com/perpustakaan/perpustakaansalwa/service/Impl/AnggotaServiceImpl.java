@@ -1,6 +1,8 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
 import com.perpustakaan.perpustakaansalwa.entity.Anggota;
+import com.perpustakaan.perpustakaansalwa.entity.dto.AnggotaDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.AnggotaMapping;
 import com.perpustakaan.perpustakaansalwa.repository.AnggotaRepository;
 import com.perpustakaan.perpustakaansalwa.service.AnggotaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,19 @@ public class AnggotaServiceImpl implements AnggotaService {
     private AnggotaRepository repository;
 
     @Override
-    public Anggota save(Anggota param)
-    {
-        return repository.save(param);
+    public AnggotaDTO save(AnggotaDTO param){
+        Anggota data = repository.save(AnggotaMapping.instance.toEntity(param));
+        return AnggotaMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Anggota> findAllData()
+    public List<AnggotaDTO> findAllData()
     {
-        return  repository.findAll();
+        return  AnggotaMapping.instance.toListDto(repository.findAll());
 
     }
     @Override
-    public Anggota update(Anggota param, Long id) {
+    public AnggotaDTO update(AnggotaDTO param, Long id) {
         Anggota data = repository.findById(id).orElse(null);
 
         if (data != null){
@@ -37,10 +39,9 @@ public class AnggotaServiceImpl implements AnggotaService {
             data.setNoTelp(param.getNoTelp()== null ? data.getNoTelp() : param.getNoTelp());
 
 
-
-            return  repository.save(data);
+            return  AnggotaMapping.instance.toDto(data);
         }
-        return data;
+        return AnggotaMapping.instance.toDto(data);
 
     }
     @Override
@@ -56,8 +57,8 @@ public class AnggotaServiceImpl implements AnggotaService {
     }
 
     @Override
-    public Anggota findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public AnggotaDTO findById(Long id) {
+        return AnggotaMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
 

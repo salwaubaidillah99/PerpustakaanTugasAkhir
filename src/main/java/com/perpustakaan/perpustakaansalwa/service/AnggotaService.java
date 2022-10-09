@@ -1,16 +1,16 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
-import com.perpustakaan.perpustakaansalwa.entity.Anggota;
+import com.perpustakaan.perpustakaansalwa.entity.dto.AnggotaDTO;
 import java.util.List;
 
 public interface AnggotaService {
-    Anggota save(Anggota param);
+    AnggotaDTO save(AnggotaDTO param);
 
-    List<Anggota> findAllData();
+    List<AnggotaDTO> findAllData();
 
-    Anggota update(Anggota param, Long id);
+    AnggotaDTO update(AnggotaDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Anggota findById(Long id);
+    AnggotaDTO findById(Long id);
 }

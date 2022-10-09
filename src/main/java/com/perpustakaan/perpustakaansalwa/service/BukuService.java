@@ -1,16 +1,18 @@
 package com.perpustakaan.perpustakaansalwa.service;
 
 import com.perpustakaan.perpustakaansalwa.entity.Buku;
+import com.perpustakaan.perpustakaansalwa.entity.dto.BukuDTO;
+
 import java.util.List;
 
 public interface BukuService {
-    Buku save(Buku param);
+    BukuDTO save(BukuDTO param);
 
-    List<Buku> findAllData();
+    List<BukuDTO> findAllData();
 
-    Buku update(Buku param, Long id);
+    BukuDTO update(BukuDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Buku findById(Long id);
+    BukuDTO findById(Long id);
 }

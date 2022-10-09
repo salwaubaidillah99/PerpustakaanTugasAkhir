@@ -1,6 +1,7 @@
 package com.perpustakaan.perpustakaansalwa.controller;
 
 import com.perpustakaan.perpustakaansalwa.entity.Anggota;
+import com.perpustakaan.perpustakaansalwa.entity.dto.AnggotaDTO;
 import com.perpustakaan.perpustakaansalwa.service.Impl.AnggotaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,13 @@ public class AnggotaController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody Anggota param){
+    public ResponseEntity<?>saveData(@RequestBody AnggotaDTO param){
         return new ResponseEntity<>(service.save(param),HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody Anggota param){
-        Anggota data = service.update(param, id);
+                                       @RequestBody AnggotaDTO param){
+        AnggotaDTO data = service.update(param, id);
 
         if (data != null){
             return  new ResponseEntity<>(data, HttpStatus.OK);

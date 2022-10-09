@@ -1,6 +1,12 @@
 package com.perpustakaan.perpustakaansalwa.service.Impl;
 
+import com.perpustakaan.perpustakaansalwa.entity.Anggota;
 import com.perpustakaan.perpustakaansalwa.entity.Buku;
+import com.perpustakaan.perpustakaansalwa.entity.dto.AnggotaDTO;
+import com.perpustakaan.perpustakaansalwa.entity.dto.BukuDTO;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.AnggotaMapping;
+import com.perpustakaan.perpustakaansalwa.entity.mapping.BukuMapping;
+import com.perpustakaan.perpustakaansalwa.repository.AnggotaRepository;
 import com.perpustakaan.perpustakaansalwa.repository.BukuRepository;
 import com.perpustakaan.perpustakaansalwa.service.BukuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +21,19 @@ public class BukuServiceImpl implements BukuService {
     private BukuRepository repository;
 
     @Override
-    public Buku save(Buku param)
-    {
-        return repository.save(param);
+    public BukuDTO save(BukuDTO param){
+        Buku data = repository.save(BukuMapping.instance.toEntity(param));
+        return BukuMapping.instance.toDto(data);
     }
 
     @Override
-    public List<Buku> findAllData()
+    public List<BukuDTO> findAllData()
     {
-        return  repository.findAll();
+        return  BukuMapping.instance.toListDto(repository.findAll());
 
     }
     @Override
-    public Buku update(Buku param, Long id) {
+    public BukuDTO update(BukuDTO param, Long id) {
         Buku data = repository.findById(id).orElse(null);
 
         if (data != null){
@@ -37,10 +43,9 @@ public class BukuServiceImpl implements BukuService {
             data.setIsbn(param.getIsbn()== null ? data.getIsbn() : param.getIsbn());
 
 
-
-            return  repository.save(data);
+            return  BukuMapping.instance.toDto(data);
         }
-        return data;
+        return BukuMapping.instance.toDto(data);
 
     }
     @Override
@@ -56,8 +61,7 @@ public class BukuServiceImpl implements BukuService {
     }
 
     @Override
-    public Buku findById(Long id) {
-        return repository.findById(id).orElse(null);
+    public BukuDTO findById(Long id) {
+        return BukuMapping.instance.toDto(repository.findById(id).orElse(null));
     }
 }
-
